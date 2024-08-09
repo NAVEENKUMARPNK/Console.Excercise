@@ -3,42 +3,65 @@ using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.Extensions.Configuration;
+
+
+
 
 namespace SendingMail
 {
     public class Mailsending
     {
+       
+            private readonly IConfiguration configuration;
+        
+
+        public Mailsending(IConfiguration configuration)
+            {
+               this. configuration = configuration;
+            }
+
+       
         public  void LogException()
+
         {
-            string file = $"file{DateTime.Now.ToString("yyyy-MM-dd")}";
+            
+            string file = $"file_{DateTime.Now.ToString("yyyy-MM-dd")}.txt";
             try
             {
-                
-                StreamWriter writer = new StreamWriter($"D:{file}.txt", false);
-
                 send();
+                using StreamWriter writer = new StreamWriter($"D:{file}.txt", false);
+                {
 
-               writer.WriteLine($"successfully mail send { DateTime.Now.ToString("yyyy-MM-dd")}");
+                    writer.WriteLine($"successfully mail send { DateTime.Now.ToString("yyyy-MM-dd")}");
+                    writer.Close();
+                }
 
-                writer.Close();
+                
             }
             catch(Exception e)
             {
-                 StreamWriter writer1 = new StreamWriter($"D:{file}.txt", false);
-                writer1.WriteLine(e.StackTrace);
-                writer1.Close();
+                using StreamWriter writer1 = new StreamWriter($"D:{file}.txt", false);
+                {
+                    writer1.WriteLine(e.StackTrace);
+                    writer1.Close();
+                }
+               
 
             }
 
         }
-        public void send()
+        private void send()
         {
+
+            SendEmail(GetUserName(), GetPassword());
             
-            
-            SendEmail(fromAddress: GetUserName(), GetPassword());
-            Console.ReadLine();
+
         }
-        public static void SendEmail(string fromAddress, string password)
+
+        
+
+        private void SendEmail(string fromAddress, string password)
         {
             using SmtpClient email = new SmtpClient
             {
@@ -47,7 +70,7 @@ namespace SendingMail
                 EnableSsl = true,
                 Host = "smtp.gmail.com",
                 Port = 587,
-                Credentials = new NetworkCredential(userName: fromAddress, password)
+                Credentials = new NetworkCredential( fromAddress, password)
 
             };
             string subject = "Course Enqurey";
@@ -69,17 +92,21 @@ namespace SendingMail
         }
        
        
-        public static string GetUserName()
+        public  string GetUserName()
         {
-            return "naveenkumarpnk203@gmail.com";
+            var datafromJsonFile = configuration.GetSection("FromAddress").Value;
+             return datafromJsonFile;
         }
-        public static string GetPassword()
+        public  string GetPassword()
         {
-            return "uaogxgeztkoiabki";
+
+            var datafromJsonFile1 = configuration.GetSection("Password").Value;
+            return datafromJsonFile1;
         }
-        public static string ToAddress()
+        public  string ToAddress()
         {
-            return "naveenkumarpnk203@gmail.com";
+            var datafromJsonFile1 = configuration.GetSection("ToAddress").Value;
+            return datafromJsonFile1;
         }
         
 

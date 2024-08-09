@@ -8,6 +8,13 @@
   <ItemGroup>
     <ProjectReference Include="..\EmailSmtp\EmailSmtp.csproj" />
     <ProjectReference Include="..\FileReadAndWrite\FileReadAndWrite.csproj" />
+    <ProjectReference Include="..\JsonExercise\JsonExercise.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AppSetting.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
