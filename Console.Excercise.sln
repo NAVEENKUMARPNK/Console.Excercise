@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSmtp", "EmailSmtp\Emai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileReadAndWrite", "FileReadAndWrite\FileReadAndWrite.csproj", "{C8F7ABEB-D33D-4EF6-927B-353765D9F0C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonExercise", "JsonExercise\JsonExercise.csproj", "{D58FF3C8-BBD0-46E8-B0E7-74C7A062F23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonExercise", "JsonExercise\JsonExercise.csproj", "{D58FF3C8-BBD0-46E8-B0E7-74C7A062F23E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonDeserialization", "JsonDeserialization\JsonDeserialization.csproj", "{C3DD4512-6ACF-4BF5-8044-9B532AF987B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D58FF3C8-BBD0-46E8-B0E7-74C7A062F23E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D58FF3C8-BBD0-46E8-B0E7-74C7A062F23E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D58FF3C8-BBD0-46E8-B0E7-74C7A062F23E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DD4512-6ACF-4BF5-8044-9B532AF987B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DD4512-6ACF-4BF5-8044-9B532AF987B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DD4512-6ACF-4BF5-8044-9B532AF987B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DD4512-6ACF-4BF5-8044-9B532AF987B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

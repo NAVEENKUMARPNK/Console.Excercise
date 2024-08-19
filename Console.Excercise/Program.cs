@@ -5,6 +5,7 @@ using System.IO;
 using JsonExercise;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using JsonDeserialization;
 
 namespace Console.Excercise
 {
@@ -23,10 +24,11 @@ namespace Console.Excercise
             Mailsending data = new Mailsending(configuration);
             data.LogException();
             //ReadAndWrite data = new ReadAndWrite();
-            // data.File();
+            //data.File();
             //Program data = new Program();
             //data.Source();
-
+            //Jsonread data = new Jsonread();
+            //data.Program();
         }
     }
 }

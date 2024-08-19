@@ -4,16 +4,17 @@ using System.Net;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-
-
-
+using JsonDeserialization;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace SendingMail
 {
     public class Mailsending
     {
-       
-            private readonly IConfiguration configuration;
+        string body = $" this is the main mail sent @ {DateTime.UtcNow:F}";
+
+        private readonly IConfiguration configuration;
         
 
         public Mailsending(IConfiguration configuration)
@@ -21,7 +22,24 @@ namespace SendingMail
                this. configuration = configuration;
             }
 
-       
+        public void Jsonreader()
+            
+        {
+            try
+            {
+                string FilePath = "C:\\Users\\user\\Downloads\\WeatherForecast-Result.json";
+                string Json = File.ReadAllText(FilePath);
+                List<WeatherForecast> Result = JsonConvert.DeserializeObject<List<WeatherForecast>>(Json);
+                foreach (var source in Result)
+                {
+                    body += ($"date:{source.date },summary:{source.summary},temperaturec:{source.temperatureC},,temperatureF:{source.temperatureF}");
+                }
+            }
+            catch(Exception e)
+            {
+                body += e;
+            }
+        }
         public  void LogException()
 
         {
@@ -29,6 +47,7 @@ namespace SendingMail
             string file = $"file_{DateTime.Now.ToString("yyyy-MM-dd")}.txt";
             try
             {
+                
                 send();
                 using StreamWriter writer = new StreamWriter($"D:{file}.txt", false);
                 {
@@ -74,8 +93,7 @@ namespace SendingMail
 
             };
             string subject = "Course Enqurey";
-            string body = $"Hello! My name is Naveen, and I have a question about [specific course/issue]. Can you help me this is the main mail sent @ {DateTime.UtcNow:F}";
-
+            
             try
             {
                 Console.WriteLine("sending email **********");
